@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_request_timesheet_line_tree" model="ir.ui.view">
+        <field name="name">view.request.timesheet.line.tree</field>
+        <field name="model">request.timesheet.line</field>
+        <field name="arch" type="xml">
+            <tree create="false" duplicate="false">
+                <field name="date_start" invisible="1" readonly="1"/>
+                <field name="date_end" invisible="1" readonly="1"/>
+                <field name="request_id"/>
+                <field name="date"/>
+                <field name="user_id"/>
+                <field name="activity_id"/>
+                <field name="description"/>
+                <field name="amount"
+                       widget="float_time"
+                       string="Duration (Hour(s))"
+                       sum="Total Duration (Hour(s))"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_request_timesheet_line_form" model="ir.ui.view">
+        <field name="name">view.request.timesheet.line.form</field>
+        <field name="model">request.timesheet.line</field>
+        <field name="arch" type="xml">
+            <form create="false" duplicate="false">
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="display_name"/></h1>
+                    </div>
+                    <group name="group_root">
+                        <group name="group_left_head">
+                            <field name="request_id"/>
+                            <field name="request_type_id"/>
+                            <field name="user_id"/>
+                        </group>
+                        <group name="group_right_head">
+                            <field name="date"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
+                        <group name="group_left_activity">
+                            <field name="activity_id"
+                                   required="1"/>
+                        </group>
+                        <group name="group_right_amount">
+                            <label for="amount" string="Duration"/>
+                            <div>
+                                <field name="amount"
+                                       widget="float_time"
+                                       required="1"
+                                       style="width: auto"/>
+                                Hour(s)
+                            </div>
+                        </group>
+                    </group>
+                    <field name="description"/>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_request_timesheet_line_search" model="ir.ui.view">
+        <field name="name">view.request.timesheet.line.search</field>
+        <field name="model">request.timesheet.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="request_id"/>
+                <field name="date"/>
+                <field name="user_id"/>
+
+                <filter name="filter_my"
+                        string="My"
+                        domain="[('user_id', '=', uid)]"/>
+                <filter name="filter_today"
+                        string="Today"
+                        domain="[('date', '=', datetime.datetime.now())]" />
+                <filter name="filter_this_week"
+                        string="This week"
+                        domain="[('date', '&gt;=', datetime.datetime.now()),('date', '&lt;=', datetime.datetime.now()+datetime.timedelta(days=7))]"/>
+                <filter name="filter_this_month"
+                        string="This month"
+                        domain="[
+                                '&amp;',
+                                ('date', '>=', (context_today() + relativedelta(day=1)).strftime('%Y-%m-%d')),
+                                ('date', '&lt;=', (context_today() + relativedelta(months=1, day=1, days=-1)).strftime('%Y-%m-%d')),
+                            ]"/>
+
+                <group string="Group By" name="groupby">
+                    <filter name="date_groupby"
+                            string="Date"
+                            context="{'group_by': 'date'}"/>
+                    <filter name="user_groupby"
+                            string="User"
+                            context="{'group_by': 'user_id'}"/>
+                    <filter name="request_type_groupby"
+                            string="Request Type"
+                            context="{'group_by': 'request_type_id'}"/>
+                    <filter name="activity_groupby"
+                            string="Activity"
+                            context="{'group_by': 'activity_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_timesheet_line_pivot" model="ir.ui.view">
+         <field name="name">view.timesheet.report.pivot</field>
+         <field name="model">request.timesheet.line</field>
+         <field name="arch" type="xml">
+             <pivot display_quantity="true" disable_linking="True">
+                 <field name="date" type="col"/>
+                 <field name="request_type_id" type="row"/>
+                 <field name="activity_id" type="row"/>
+                 <field name="amount" widget="float_time" type="measure"/>
+             </pivot>
+         </field>
+     </record>
+
+    <record id="view_timesheet_line_graph" model="ir.ui.view">
+         <field name="name">view.timesheet.report.graph</field>
+         <field name="model">request.timesheet.line</field>
+         <field name="arch" type="xml">
+             <graph>
+                 <field name="request_type_id"/>
+                 <field name="activity_id"/>
+             </graph>
+         </field>
+     </record>
+
+
+    <record id="action_timesheet_line" model="ir.actions.act_window">
+        <field name="name">Timesheet Line</field>
+        <field name="res_model">request.timesheet.line</field>
+        <field name="view_mode">tree,pivot,graph,form</field>
+    </record>
+</odoo>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <!--Demo timesheet lines-->
+    <record id="demo_request_timesheet_line_1" model="request.timesheet.line">
+        <field name="request_id" ref="generic_request.request_request_type_simple_demo_1"/>
+        <field name="activity_id" ref="request_timesheet_activity_coding"/>
+        <field name="amount">1.5</field>
+        <field name="date" eval="time.strftime('%Y-%m-03')"/>
+    </record>
+    <record id="demo_request_timesheet_line_2" model="request.timesheet.line">
+        <field name="request_id" ref="generic_request.request_request_type_simple_demo_1"/>
+        <field name="activity_id" ref="request_timesheet_activity_analysis"/>
+        <field name="amount">3</field>
+        <field name="date" eval="time.strftime('%Y-%m-16')"/>
+    </record>
+    <record id="demo_request_timesheet_line_3" model="request.timesheet.line">
+        <field name="request_id" ref="generic_request.request_request_type_simple_demo_1"/>
+        <field name="activity_id" ref="request_timesheet_activity_call"/>
+        <field name="amount">0.3</field>
+        <field name="date" eval="time.strftime('%Y-%m-28')"/>
+    </record>
+
+    <record id="demo_request_timesheet_line_d3_1" model="request.timesheet.line">
+        <field name="request_id" ref="generic_request.request_request_type_simple_demo_3"/>
+        <field name="activity_id" ref="request_timesheet_activity_coding"/>
+        <field name="amount">7.5</field>
+        <field name="date" eval="time.strftime('%Y-04-23')"/>
+    </record>
+    <record id="demo_request_timesheet_line_d3_2" model="request.timesheet.line">
+        <field name="request_id" ref="generic_request.request_request_type_simple_demo_3"/>
+        <field name="activity_id" ref="request_timesheet_activity_analysis"/>
+        <field name="amount">6</field>
+        <field name="date" eval="time.strftime('%Y-05-16')"/>
+    </record>
+    <record id="demo_request_timesheet_line_d3_3" model="request.timesheet.line">
+        <field name="request_id" ref="generic_request.request_request_type_simple_demo_3"/>
+        <field name="activity_id" ref="request_timesheet_activity_call"/>
+        <field name="amount">8.3</field>
+        <field name="date" eval="time.strftime('%Y-06-02')"/>
+    </record>
+
+    <record id="demo_request_timesheet_line_long_text_1" model="request.timesheet.line">
+        <field name="request_id" ref="generic_request.request_request_type_simple_demo_long_text_1"/>
+        <field name="activity_id" ref="request_timesheet_activity_analysis"/>
+        <field name="amount">1.7</field>
+        <field name="date" eval="time.strftime('%Y-%m-06')"/>
+    </record>
+    <record id="demo_request_timesheet_line_long_text_2" model="request.timesheet.line">
+        <field name="request_id" ref="generic_request.request_request_type_simple_demo_long_text_1"/>
+        <field name="activity_id" ref="request_timesheet_activity_call"/>
+        <field name="amount">0.3</field>
+        <field name="date" eval="time.strftime('%Y-%m-13')"/>
+    </record>
+
+    <record id="demo_request_timesheet_line_cp_1" model="request.timesheet.line">
+        <field name="request_id" ref="generic_request.demo_request_with_complex_priority"/>
+        <field name="activity_id" ref="request_timesheet_activity_analysis"/>
+        <field name="amount">1.2</field>
+        <field name="date" eval="time.strftime('%Y-%m-08')"/>
+    </record>
+    <record id="demo_request_timesheet_line_cp_2" model="request.timesheet.line">
+        <field name="request_id" ref="generic_request.demo_request_with_complex_priority"/>
+        <field name="activity_id" ref="request_timesheet_activity_coding"/>
+        <field name="amount">3.8</field>
+        <field name="date" eval="time.strftime('%Y-%m-21')"/>
+    </record>
+
+    <record id="demo_request_timesheet_line_nascii_1" model="request.timesheet.line">
+        <field name="request_id" ref="generic_request.request_request_type_non_ascii_demo_1"/>
+        <field name="activity_id" ref="request_timesheet_activity_analysis"/>
+        <field name="amount">2.1</field>
+        <field name="date" eval="time.strftime('%Y-%m-15')"/>
+    </record>
+    <record id="demo_request_timesheet_line_nascii_2" model="request.timesheet.line">
+        <field name="request_id" ref="generic_request.request_request_type_non_ascii_demo_1"/>
+        <field name="activity_id" ref="request_timesheet_activity_coding"/>
+        <field name="amount">2.3</field>
+        <field name="date" eval="time.strftime('%Y-%m-04')"/>
+    </record>
+</odoo>
