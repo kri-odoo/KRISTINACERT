@@ -1,0 +1,3 @@
+html2text
+freezegun
+python-dateutil>=2.7

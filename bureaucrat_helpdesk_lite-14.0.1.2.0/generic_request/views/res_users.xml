@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_users_form" model="ir.ui.view">
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <div name="button_box" position="inside">
+                <button class="oe_stat_button"
+                        type="object"
+                        name="action_show_related_requests"
+                        groups="generic_request.group_request_user"
+                        icon="fa-comments-o">
+                    <field string="Requests" name="statbutton_total_request_count"
+                           widget="statinfo"/>
+                </button>
+            </div>
+            <xpath expr="//notebook" position="inside">
+                <page name="page_generic_request" string="Requests"
+                      groups="generic_request.group_request_user">
+                    <group name="group_requests_root">
+                        <!-- TODO: Make field names links that open the
+                        corresponding list of requests -->
+                        <group string="Total" name="group_requests_left">
+                            <field name="total_request_count"
+                                   string="All requests"/>
+                            <field name="total_request_open_count"
+                                   string="Open requests"/>
+                            <field name="total_request_closed_count"
+                                   string="Closed requests"/>
+                        </group>
+                        <group string="Assigned" name="group_requests_right">
+                            <field name="assigned_request_count"
+                                   string="Total requests"/>
+                            <field name="assigned_request_open_count"
+                                   string="Open requests"/>
+                            <field name="assigned_request_closed_count"
+                                   string="Closed requests"/>
+                        </group>
+                        <group string="Created &amp; Authored"
+                               name="group_requests_left">
+                            <field name="created_request_count"
+                                   string="Created requests"/>
+                            <field name="authored_request_count"
+                                   string="Authored requests"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
