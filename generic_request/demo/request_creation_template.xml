@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="demo_request_creation_template" model="request.creation.template">
+        <field name="name">Type simple category demo technical</field>
+        <field name="request_type_id" ref="generic_request.request_type_simple"/>
+        <field name="request_category_id" ref="generic_request.request_category_demo_technical"/>
+        <field name="request_text">Request creation template</field>
+    </record>
+</odoo>

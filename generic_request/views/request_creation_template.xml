@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="generic_request_creation_template_view_search" model="ir.ui.view">
+        <field name="name">request.creation.template.search</field>
+        <field name="model">request.creation.template</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+            </search>
+        </field>
+    </record>
+
+   <record id="generic_request_creation_template_tree" model="ir.ui.view">
+        <field name="name">request.creation.template.tree</field>
+        <field name="model">request.creation.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="request_category_id"/>
+                <field name="request_type_id"/>
+                <field name="request_tag_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="generic_request_creation_template_view_form" model="ir.ui.view">
+        <field name="name">request.creation.template.form</field>
+        <field name="model">request.creation.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" groups="base.group_user"
+                                class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button"
+                                   options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <div name="title" class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Template name..."/>
+                        </h1>
+
+                    </div>
+                    <group name="group_template_values">
+                        <group name="group_template_values_left">
+                            <field name="request_category_id" placeholder="Request category..."/>
+                            <field name="request_type_id" placeholder="Request type..."/>
+                        </group>
+                        <group name="group_template_values_right">
+                            <field name="request_tag_ids"
+                                   widget="many2many_tags"
+                                   options="{'color_field': 'color'}"
+                                   domain="[('model_id.model', '=', 'request.request'),'|', ('category_id', '=', False), ('category_id.request_type_ids.id', '=', request_type_id)]"
+                                   context="{'default_model': 'request.request'}"
+                                   placeholder="Request tags..."/>
+                        </group>
+                        <separator string="Default request text" colspan="4"/>
+                        <field name="request_text" colspan="4"
+                               nolabel="1" placeholder="Request text..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_request_generic_request_creation_template_view" model="ir.actions.act_window">
+        <field name="name">Request creation template</field>
+        <field name="res_model">request.creation.template</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Request creation template"
+              id="menu_configuration_request_creation_template"
+              parent="menu_configuration"
+              action="action_request_generic_request_creation_template_view"
+              sequence="30"/>
+</odoo>
