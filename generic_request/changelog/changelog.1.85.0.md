@@ -1,0 +1,15 @@
+- Added new search filters for requests
+    - Today
+    - 24 hours
+    - Week
+    - Month
+    - Year
+- Added new group by filters for request's search view
+    - Assignee
+    - Is Closed
+- Added request statistics (requests open/closed for today, 24h, week, etc) to
+  following models:
+    - Request Type
+    - Request Category
+    - Request Channel
+    - Request Kind

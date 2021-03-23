@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Tag category severity -->
+    <record id="tag_severity_low" model="generic.tag">
+        <field name="name">Low</field>
+        <field name="code">severity_low</field>
+        <field name="model_id" ref="generic_request_tag_model"/>
+        <field name="category_id" ref="tag_category_severity"/>
+        <field name="color" eval="6"/>
+    </record>
+    <record id="tag_severity_medium" model="generic.tag">
+        <field name="name">Medium</field>
+        <field name="code">severity_medium</field>
+        <field name="model_id" ref="generic_request_tag_model"/>
+        <field name="category_id" ref="tag_category_severity"/>
+        <field name="color" eval="3"/>
+    </record>
+    <record id="tag_severity_high" model="generic.tag">
+        <field name="name">High</field>
+        <field name="code">severity_high</field>
+        <field name="model_id" ref="generic_request_tag_model"/>
+        <field name="category_id" ref="tag_category_severity"/>
+        <field name="color" eval="2"/>
+    </record>
+    <record id="tag_severity_critical" model="generic.tag">
+        <field name="name">Critical</field>
+        <field name="code">severity_critical</field>
+        <field name="model_id" ref="generic_request_tag_model"/>
+        <field name="category_id" ref="tag_category_severity"/>
+        <field name="color" eval="1"/>
+    </record>
+
+    <!-- Tag category priority -->
+    <record id="tag_priority_low" model="generic.tag">
+        <field name="name">Low</field>
+        <field name="code">priority_low</field>
+        <field name="model_id" ref="generic_request_tag_model"/>
+        <field name="category_id" ref="tag_category_priority"/>
+        <field name="color" eval="4"/>
+    </record>
+    <record id="tag_priority_medium" model="generic.tag">
+        <field name="name">Medium</field>
+        <field name="code">priority_medium</field>
+        <field name="model_id" ref="generic_request_tag_model"/>
+        <field name="category_id" ref="tag_category_priority"/>
+        <field name="color" eval="7"/>
+    </record>
+    <record id="tag_priority_high" model="generic.tag">
+        <field name="name">High</field>
+        <field name="code">priority_high</field>
+        <field name="model_id" ref="generic_request_tag_model"/>
+        <field name="category_id" ref="tag_category_priority"/>
+        <field name="color" eval="5"/>
+    </record>
+
+    <!-- Tag category Platform -->
+    <record id="tag_platform_linux" model="generic.tag">
+        <field name="name">Linux</field>
+        <field name="code">platform_linux</field>
+        <field name="model_id" ref="generic_request_tag_model"/>
+        <field name="category_id" ref="tag_category_platform"/>
+    </record>
+    <record id="tag_platform_windows" model="generic.tag">
+        <field name="name">Windows</field>
+        <field name="code">platform_windows</field>
+        <field name="model_id" ref="generic_request_tag_model"/>
+        <field name="category_id" ref="tag_category_platform"/>
+    </record>
+    <record id="tag_platform_mac" model="generic.tag">
+        <field name="name">Mac OS</field>
+        <field name="code">platform_mac</field>
+        <field name="model_id" ref="generic_request_tag_model"/>
+        <field name="category_id" ref="tag_category_platform"/>
+    </record>
+</odoo>

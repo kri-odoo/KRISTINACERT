@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_request_wizard_stop_work_form" model="ir.ui.view">
+        <field name="name">view.request.wizard.stop.work.form</field>
+        <field name="model">request.wizard.stop.work</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="timesheet_line_id" invisible="1"/>
+                    <group>
+                        <group>
+                            <field name="date_start"/>
+                            <label for="amount" string="Spent"/>
+                            <div>
+                                <field name="amount" widget="float_time" style="width: auto"/>
+                                Hour(s)
+                            </div>
+                            <field name="activity_id"
+                                   domain="[('request_type_ids', '=', request_type_id)]"/>
+                        </group>
+                        <group>
+                            <field name="request_id"/>
+                            <field name="request_type_id"/>
+                            <field name="request_text_sample"/>
+                        </group>
+                    </group>
+                    <separator string="Description" colspan="4"/>
+                    <field name="description" placeholder="Description..."/>
+                </sheet>
+                <footer>
+                   <button string="Log Time"
+                           name="do_stop_work"
+                           class="btn-primary"
+                           type="object"/>
+                   <button string="Cancel" special="cancel"/>
+               </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_request_wizard_stop_work" model="ir.actions.act_window">
+        <field name="res_model">request.wizard.stop.work</field>
+        <field name="name">Stop Work</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+    <record id="_report_graph_view" model="ir.ui.view">
+        <field name="name">monthly.report.graph</field>
+        <field name="model">request.request</field>
+        <field name="arch" type="xml">
+            <graph type="line">
+                <field name="date_created"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- Daily reports -->
+    <record id="action_graph_report_by_count" model="ir.actions.act_window">
+        <field name="name">Report Requests By Count</field>
+        <field name="res_model">request.request</field>
+        <field name="view_mode">graph</field>
+        <field name="context">{'search_default_filter_month': 1, 'search_default_filter_group_by_creation_date': 1}</field>
+    </record>
+
+    <menuitem name="Requests"
+              id="menu_graph_requests_report"
+              parent="generic_request.menu_request_report"
+              groups="generic_request.group_request_manager"
+              sequence="100"/>
+
+    <menuitem name="Requests"
+              id="menu_graph_report_requests_by_count"
+              parent="generic_request.menu_graph_requests_report"
+              groups="generic_request.group_request_manager"
+              sequence="10"
+              action="action_graph_report_by_count"/>
+</odoo>
